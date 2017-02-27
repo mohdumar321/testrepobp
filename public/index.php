@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('GMT'); 
 error_reporting(E_ALL);
 ini_set('display_errors', TRUE);
 ini_set('display_startup_errors',TRUE);
@@ -8,8 +9,8 @@ if (!$conn) {
     $e = oci_error();
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 }
-
-$stid = oci_parse($conn, 'select tablespace_name , table_name from all_table');
+$sql = 'select * from ORACLE123."umartable"';
+$stid = oci_parse($conn, $sql);
 oci_execute($stid);
 
 echo "<table border='1'>\n";
